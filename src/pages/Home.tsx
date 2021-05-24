@@ -13,6 +13,7 @@ interface Task {
 
 export function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [mode, setMode] = useState(false);
 
   function handleAddTask(newTaskTitle: string) {
     if (newTaskTitle == '') {
@@ -45,11 +46,12 @@ export function Home() {
 
   return (
     <>
-      <Header />
+      <Header mode={mode} setMode={setMode} />
 
-      <TodoInput addTask={handleAddTask} />
+      <TodoInput mode={mode} addTask={handleAddTask} />
 
       <MyTasksList
+        mode={mode}
         tasks={tasks}
         onPress={handleMarkTaskAsDone}
         onLongPress={handleRemoveTask}

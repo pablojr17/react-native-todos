@@ -5,6 +5,7 @@ import checkIcon from '../assets/icons/Check.png';
 
 interface TodoInputProps {
   addTask: (task: string) => void;
+  mode: boolean
 }
 
 export function TodoInput({ addTask }: TodoInputProps) {

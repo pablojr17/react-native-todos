@@ -17,9 +17,10 @@ interface MyTasksListProps {
   }[];
   onPress: (id: number) => void;
   onLongPress: (id: number) => void;
+  mode: boolean
 }
 
-export function MyTasksList({ tasks, onLongPress, onPress }: MyTasksListProps) {
+export function MyTasksList({ tasks, onLongPress, onPress, mode }: MyTasksListProps) {
   return (
     <FlatList
       data={tasks}
