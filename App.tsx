@@ -5,10 +5,10 @@ import { Home } from './src/pages/Home';
 export default function App() {
   return (
     <>
-      <StatusBar 
-        backgroundColor="transparent" 
-        translucent 
-        barStyle="light-content" 
+      <StatusBar
+        backgroundColor="transparent"
+        translucent
+        barStyle="light-content"
       />
       <Home />
     </>

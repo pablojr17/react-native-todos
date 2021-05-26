@@ -1,10 +1,14 @@
 import React from 'react';
-import { FlatList, TouchableOpacity, View, Text, StyleSheet, FlatListProps } from 'react-native';
+import { FlatList, TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 
-function FlatListHeaderComponent() {
+interface MyFlatListProps {
+  mode: boolean
+}
+
+function FlatListHeaderComponent({ mode }: MyFlatListProps) {
   return (
     <View>
-      <Text style={styles.header}>Minhas tasks</Text>
+      <Text style={mode === false ? styles.header : [styles.header, { color: '#BF4AD4' }]}>Minhas tasks</Text>
     </View>
   )
 }
@@ -32,27 +36,27 @@ export function MyTasksList({ tasks, onLongPress, onPress, mode }: MyTasksListPr
             activeOpacity={0.7}
             onPress={() => onPress(item.id)}
             onLongPress={() => onLongPress(item.id)}
-            style={item.done === true ? styles.taskButtonDone : styles.taskButton}
+            style={mode === false ? (item.done === true ? styles.taskButtonDone : styles.taskButton) : (item.done === true ? [styles.taskButtonDone, { backgroundColor: 'rgba(62, 62, 62, 0.1)' }] : styles.taskButton)}
           >
             <View
               testID={`marker-${index}`}
-              style={item.done === true ? styles.taskMarkerDone : styles.taskMarker}
+              style={mode === false ? (item.done === true ? styles.taskMarkerDone : styles.taskMarker) : (item.done === true ? [styles.taskMarkerDone, { backgroundColor: '#12a952' }] : [styles.taskMarker, { borderColor: '#12a952' }])}
             />
             <Text
-              style={item.done === true ? styles.taskTextDone : styles.taskText}
+              style={mode === false ? (item.done === true ? styles.taskTextDone : styles.taskText) : (item.done === true ? [styles.taskTextDone, { color: '#E1E1E6' }] : [styles.taskText, { color: '#E1E1E6' }])}
             >
               {item.title}
             </Text>
           </TouchableOpacity>
         )
       }}
-      ListHeaderComponent={<FlatListHeaderComponent />}
+      ListHeaderComponent={< FlatListHeaderComponent mode={mode} />}
       ListHeaderComponentStyle={{
         marginBottom: 20
       }}
       style={{
         marginHorizontal: 24,
-        marginTop: 32
+        marginTop: 32,
       }}
     />
   )
